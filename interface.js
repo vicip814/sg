@@ -351,14 +351,22 @@ SelectorGadget.prototype.showFetch = function(e) {
   doc=win.document;
   doc.open();
   //doc.write('<textarea style="width:100%; height : 100%">' + window.location.href + '</textarea>');
- // doc.write('<textarea style="width:100%; height : 100%">' + window.location.pathname + '</textarea>');
+  doc.write('<textarea style="width:100%; height : 100%">' + window.location.pathname + '</textarea>');
 
- var xhttp = new XMLHttpRequest();
+  var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 ) {
+    if (this.readyState == 4 && this.status == 200) {
      //document.getElementById("demo").innerHTML = this.responseText;
-	 var x  =  this.responseText;
-	 doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
+//	 var x  =  this.responseText;
+	let $dom = (new DOMParser()).parseFromString(this.responseText, "text/xml");
+	
+    var x  = "";
+    $dom(path).each(function( index ){
+  	  var str =jQuery(this).text().trim();
+	  if ( str !== null && str !== '')
+    	  x =  x + str + "\n";
+    });  	
+	doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
     }
   };
   xhttp.open("GET",window.location.pathname , true);
