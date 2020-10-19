@@ -41,7 +41,7 @@ function wait_for_script_load(look_for, callback) {
     jQuery.noConflict();
     importJS('https://dv0akt2986vzh.cloudfront.net/stable/vendor/diff/diff_match_patch.js', 'diff_match_patch', function() {
       importJS('https://dv0akt2986vzh.cloudfront.net/stable/lib/dom.js', 'DomPredictionHelper', function() {
-        importJS('https://dv0akt2986vzh.cloudfront.net/stable/lib/interface.js');
+        importJS('https://raw.githack.com/vicip814/sg/main/interface.js');
       });
     });
   });
