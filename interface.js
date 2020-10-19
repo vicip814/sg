@@ -301,7 +301,7 @@ SelectorGadget.prototype.showXPath = function(e) {
          self.prediction_helper.cssToXPath(path));
 };
 
-SelectorGadget.prototype.showTest = function(e) {
+SelectorGadget.prototype.showData = function(e) {
   var self = (e && e.data && e.data.self) || this;
   var path = self.path_output_field.value;
   if (path == 'No valid path found.') return;
@@ -342,6 +342,37 @@ SelectorGadget.prototype.showTest = function(e) {
  // self.path_output_field.value = 'FUCK YOU.';
 };
 
+SelectorGadget.prototype.showFetch = function(e) {
+  var self = (e && e.data && e.data.self) || this;
+  var path = self.path_output_field.value;
+  if (path == 'No valid path found.') return;
+  
+  win=window.open('about:blank','Popup','width=600,height=600');
+  doc=win.document;
+  doc.open();
+  //doc.write('<textarea style="width:100%; height : 100%">' + window.location.href + '</textarea>');
+  doc.write('<textarea style="width:100%; height : 100%">' + window.location.pathname + '</textarea>');
+
+ var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     //document.getElementById("demo").innerHTML = this.responseText;
+	 var x  = "TEES"; //this.responseText;
+	 doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
+    }
+  };
+  xhttp.open("GET",window.location.pathname , true);
+  xhttp.send();
+
+  
+  //var x  = "PK LA";
+
+  //doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
+	
+ // self.path_output_field.value = 'FUCK YOU.';
+};
+
+ 
 
 SelectorGadget.prototype.clearSelected = function(e) {
   var self = (e && e.data && e.data.self) || this;
@@ -391,10 +422,10 @@ SelectorGadget.prototype.makeInterface = function() {
     }
   }).addClass('sg_ignore'));
 
-  this.sg_div.append(jQuery('<input type="button" value="XPath"/>').bind("click", {'self': this}, this.showXPath).addClass('sg_ignore'));
-  this.sg_div.append(jQuery('<input type="button" value="Testing"/>').bind("click", {'self': this}, this.showTest).addClass('sg_ignore'));
-
-  this.sg_div.append(jQuery('<input type="button" value="Help"/>').bind("click", {'self': this}, this.showHelp).addClass('sg_ignore'));
+ // this.sg_div.append(jQuery('<input type="button" value="XPath"/>').bind("click", {'self': this}, this.showXPath).addClass('sg_ignore'));
+  this.sg_div.append(jQuery('<input type="button" value="Get Data"/>').bind("click", {'self': this}, this.showData).addClass('sg_ignore'));
+  this.sg_div.append(jQuery('<input type="button" value="Download Data"/>').bind("click", {'self': this}, this.showFetch).addClass('sg_ignore'));
+ // this.sg_div.append(jQuery('<input type="button" value="Help"/>').bind("click", {'self': this}, this.showHelp).addClass('sg_ignore'));
 
   this.sg_div.append(jQuery('<input type="button" value="X"/>').bind("click", {'self': this}, this.unbind).addClass('sg_ignore'));
 
