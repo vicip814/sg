@@ -305,7 +305,10 @@ SelectorGadget.prototype.showTest = function(e) {
   var self = (e && e.data && e.data.self) || this;
   var path = self.path_output_field.value;
   if (path == 'No valid path found.') return;
-  self.path_output_field.value = 'FUCK YOU.';
+  
+  var n = document.getElementById("notepad");
+  n.value = "KAI";
+ // self.path_output_field.value = 'FUCK YOU.';
 };
 
 
@@ -420,6 +423,23 @@ SelectorGadget.prototype.analytics = function() {
   var urchinUrl = 'http://www.google-analytics.com/__utm.gif?utmwv=1&utmn=' + utmn + '&utmsr=-&utmsc=-&utmul=-&utmje=0&utmfl=-&utmdt=-&utmhn=' + utmhn + '&utmr=' + referer + '&utmp=' + utmp + '&utmac=' + utmac + '&utmcc=__utma%3D' + cookie + '.' + random + '.' + today + '.' + today + '.' + today + '.2%3B%2B__utmb%3D' + cookie + '%3B%2B__utmc%3D' + cookie + '%3B%2B__utmz%3D' + cookie + '.' + today + '.2.2.utmccn%3D(direct)%7Cutmcsr%3D(direct)%7Cutmcmd%3D(none)%3B%2B__utmv%3D' + cookie + '.' + uservar + '%3B';
   document.body.appendChild(jQuery('<img />').attr('src', urchinUrl).get(0));
 };
+
+
+var y = document.createElement("DIV");
+var x = document.createElement("TEXTAREA");
+x.setAttribute("id", "notepad");
+x.style.height= "100px";
+x.style.width= "100%";
+x.setAttribute("placeholder", "notepad");
+y.style.position="fixed";
+y.style.top="0px";
+y.style.zIndex="2400";
+y.style.height="200px";
+y.style.width="100%";
+y.appendChild(x);
+document.body.appendChild(y);
+ 
+
 
 // And go!
 if (typeof(selector_gadget) == 'undefined' || selector_gadget == null) {
