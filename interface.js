@@ -357,7 +357,7 @@ SelectorGadget.prototype.showFetch = function(e) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
      //document.getElementById("demo").innerHTML = this.responseText;
-	 var x  = "TEES"; //this.responseText;
+	 var x  =  this.responseText;
 	 doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
     }
   };
