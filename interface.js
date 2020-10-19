@@ -307,7 +307,12 @@ SelectorGadget.prototype.showTest = function(e) {
   if (path == 'No valid path found.') return;
   
   var n = document.getElementById("notepad");
-  n.value = "KAI";
+  n.value = "";
+  jQuery(path).each(function( index ){
+	  n.value =  n.value + jQuery(this).text() + "\n";
+  });
+ 
+	
  // self.path_output_field.value = 'FUCK YOU.';
 };
 
