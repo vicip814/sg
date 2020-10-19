@@ -305,7 +305,7 @@ SelectorGadget.prototype.showTest = function(e) {
   var self = (e && e.data && e.data.self) || this;
   var path = self.path_output_field.value;
   if (path == 'No valid path found.') return;
-  this.path_output_field.value = 'FUCK YOU.';
+  self.path_output_field.value = 'FUCK YOU.';
 };
 
 
