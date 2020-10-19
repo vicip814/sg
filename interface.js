@@ -306,12 +306,36 @@ SelectorGadget.prototype.showTest = function(e) {
   var path = self.path_output_field.value;
   if (path == 'No valid path found.') return;
   
-  var n = document.getElementById("notepad");
-  n.value = "";
+  /*
+  var y = document.createElement("DIV");
+  var x = document.createElement("TEXTAREA");
+  x.setAttribute("id", "notepad");
+  x.style.height= "100px";
+  x.style.width= "100%";
+  x.setAttribute("placeholder", "notepad");
+  y.style.position="fixed";
+  y.style.top="0px";
+  y.style.zIndex="2400";
+  y.style.height="100%";
+  y.style.width="100%";
+  y.appendChild(x);  
+  
+  var popup = open("", "Popup", "width=600,height=600");
+  popup.document.body.appendChild(y);  
+ // var n = popup.document.getElementById("notepad");
+  x.value = "";
   jQuery(path).each(function( index ){
-	  n.value =  n.value + jQuery(this).text() + "\n";
+	  x.value =  x.value + jQuery(this).text() + "\n";
   });
- 
+ */
+  win=window.open('about:blank','Popup','width=600,height=600');
+  doc=win.document;
+  doc.open();
+  var x  = "";
+  jQuery(path).each(function( index ){
+	  x =  x + jQuery(this).text() + "\n";
+  });  
+  doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
 	
  // self.path_output_field.value = 'FUCK YOU.';
 };
@@ -430,19 +454,8 @@ SelectorGadget.prototype.analytics = function() {
 };
 
 
-var y = document.createElement("DIV");
-var x = document.createElement("TEXTAREA");
-x.setAttribute("id", "notepad");
-x.style.height= "100px";
-x.style.width= "100%";
-x.setAttribute("placeholder", "notepad");
-y.style.position="fixed";
-y.style.top="0px";
-y.style.zIndex="2400";
-y.style.height="200px";
-y.style.width="100%";
-y.appendChild(x);
-document.body.appendChild(y);
+
+
  
 
 
