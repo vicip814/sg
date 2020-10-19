@@ -362,10 +362,11 @@ SelectorGadget.prototype.showFetch = function(e) {
     if (this.readyState == 4 && this.status == 200) {
      //document.getElementById("demo").innerHTML = this.responseText;
 //	 var x  =  this.responseText;
-	let $dom = (new DOMParser()).parseFromString(this.responseText, "text/xml");
+	let $dom = (new DOMParser()).parseFromString(this.responseText, "text/html");
 	
     var x  = "";
-    $dom.querySelectorAll(path).each(function( index ){
+    //$dom.querySelectorAll(path).each(function( index ){
+	Array.from($dom.querySelectorAll(path)).forEach(function( index ){
   	  var str =jQuery(this).text().trim();
 	  if ( str !== null && str !== '')
     	  x =  x + str + "\n";
