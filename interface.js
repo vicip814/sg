@@ -301,6 +301,14 @@ SelectorGadget.prototype.showXPath = function(e) {
          self.prediction_helper.cssToXPath(path));
 };
 
+SelectorGadget.prototype.showTest = function(e) {
+  var self = (e && e.data && e.data.self) || this;
+  var path = self.path_output_field.value;
+  if (path == 'No valid path found.') return;
+  this.path_output_field.value = 'FUCK YOU.';
+};
+
+
 SelectorGadget.prototype.clearSelected = function(e) {
   var self = (e && e.data && e.data.self) || this;
   self.selected = [];
@@ -350,6 +358,7 @@ SelectorGadget.prototype.makeInterface = function() {
   }).addClass('sg_ignore'));
 
   this.sg_div.append(jQuery('<input type="button" value="XPath"/>').bind("click", {'self': this}, this.showXPath).addClass('sg_ignore'));
+  this.sg_div.append(jQuery('<input type="button" value="Testing"/>').bind("click", {'self': this}, this.showTest).addClass('sg_ignore'));
 
   this.sg_div.append(jQuery('<input type="button" value="Help"/>').bind("click", {'self': this}, this.showHelp).addClass('sg_ignore'));
 
