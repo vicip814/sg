@@ -341,11 +341,11 @@ SelectorGadget.prototype.showData = function(e) {
 	
  // self.path_output_field.value = 'FUCK YOU.';
 };
-
+/*
 ("undefined"==typeof window.localStorage||"undefined"==typeof window.sessionStorage)&&function(){function e(f){function e(a){var b;b=new Date;b.setTime(b.getTime()+31536E6);document.cookie="localStorage="+a+("; expires="+b.toGMTString())+"; path=/"}function g(a){a=JSON.stringify(a);"session"==f?window.name=a:e(a)}var d=function(){var a;if("session"==f)a=window.name;else a:{a=document.cookie.split(";");var b,c;for(b=0;b<a.length;b++){for(c=a[b];" "==c.charAt(0);)c=c.substring(1,c.length);if(0==c.indexOf("localStorage=")){a=
 c.substring(13,c.length);break a}}a=null}return a?JSON.parse(a):{}}();return{length:0,clear:function(){d={};this.length=0;"session"==f?window.name="":e("")},getItem:function(a){return void 0===d[a]?null:d[a]},key:function(a){var b=0,c;for(c in d){if(b==a)return c;b++}return null},removeItem:function(a){delete d[a];this.length--;g(d)},setItem:function(a,b){d[a]=b+"";this.length++;g(d)}}}if("undefined"==typeof window.localStorage)window.localStorage=new e("local");if("undefined"==typeof window.sessionStorage)window.sessionStorage=new e("session")}();
 
-
+*/
 SelectorGadget.prototype.showFetch = function(e) {
   var self = (e && e.data && e.data.self) || this;
   var path = self.path_output_field.value;
@@ -360,8 +360,12 @@ SelectorGadget.prototype.showFetch = function(e) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+	//	let $dom = (new DOMParser()).parseFromString(this.responseText, "text/html");
+		let x  =  this.responseText;
+		doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
      //document.getElementById("demo").innerHTML = this.responseText;
 //	 var x  =  this.responseText;
+/*
 	let $dom = (new DOMParser()).parseFromString(this.responseText, "text/html");
 	
     var x  = "";
@@ -371,21 +375,21 @@ SelectorGadget.prototype.showFetch = function(e) {
 	  if ( str !== null && str !== '')
     	  x =  x + str + "\n";
     });  	
-	doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
+	
 	
 	var n = document.createElement("DIV");
 	n.value = x;
 	//var n = document.getElementById("notepad");
-	/* save */
+ 
 	doc.body.appendChild(n);
 	var s = function(){localStorage.setItem("notepad", n.value);}
-	/* retrieve (only on page load) */
+ 
 	if(window.localStorage){ n.value = localStorage.getItem("notepad");}
-	/* autosave onchange and every 500ms and when you close the window */
+ 
 	n.onchange = s();
 	setInterval( s, 500);
 	window.onunload = s();	
-	
+	*/
 	
 	
     }
