@@ -333,7 +333,7 @@ SelectorGadget.prototype.showTest = function(e) {
   doc.open();
   var x  = "";
   jQuery(path).each(function( index ){
-	  x =  x + jQuery(this).text() + "\n";
+	  x =  x + jQuery(this).text().trim() + "\n";
   });  
   doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
 	
