@@ -351,11 +351,11 @@ SelectorGadget.prototype.showFetch = function(e) {
   doc=win.document;
   doc.open();
   //doc.write('<textarea style="width:100%; height : 100%">' + window.location.href + '</textarea>');
-  doc.write('<textarea style="width:100%; height : 100%">' + window.location.pathname + '</textarea>');
+ // doc.write('<textarea style="width:100%; height : 100%">' + window.location.pathname + '</textarea>');
 
  var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+    if (this.readyState == 4 ) {
      //document.getElementById("demo").innerHTML = this.responseText;
 	 var x  =  this.responseText;
 	 doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
