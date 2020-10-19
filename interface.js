@@ -361,7 +361,7 @@ SelectorGadget.prototype.showFetch = function(e) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
 	//	let $dom = (new DOMParser()).parseFromString(this.responseText, "text/html");
-		let x  =  this.responseText;
+		let x  =  this.response.Text;
 		doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
      //document.getElementById("demo").innerHTML = this.responseText;
 //	 var x  =  this.responseText;
