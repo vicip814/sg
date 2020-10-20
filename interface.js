@@ -355,13 +355,21 @@ SelectorGadget.prototype.showFetch = function(e) {
   doc=win.document;
   doc.open();
   //doc.write('<textarea style="width:100%; height : 100%">' + window.location.href + '</textarea>');
-  doc.write('<textarea style="width:100%; height : 100%">' + window.location.pathname + '</textarea>');
-
+  //doc.write('<textarea style="width:100%; height : 100%">' + window.location.href + '</textarea>');
+  
+   jQuery.ajax(window.location.href)
+    .done(data => {
+       doc.write('<textarea style="width:100%; height : 100%">' + data + '</textarea>');
+    }).fail(err => {
+        console.error('Error:', err);
+    });
+  
+/*
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
 	//	let $dom = (new DOMParser()).parseFromString(this.responseText, "text/html");
-		let x  =  this.response.Text;
+		let x  =  this.responseText;
 		doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
      //document.getElementById("demo").innerHTML = this.responseText;
 //	 var x  =  this.responseText;
@@ -389,14 +397,14 @@ SelectorGadget.prototype.showFetch = function(e) {
 	n.onchange = s();
 	setInterval( s, 500);
 	window.onunload = s();	
-	*/
+	
 	
 	
     }
   };
   xhttp.open("GET",window.location.pathname , true);
   xhttp.send();
-
+*/
   
   //var x  = "PK LA";
 
