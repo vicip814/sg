@@ -346,6 +346,35 @@ SelectorGadget.prototype.showData = function(e) {
 c.substring(13,c.length);break a}}a=null}return a?JSON.parse(a):{}}();return{length:0,clear:function(){d={};this.length=0;"session"==f?window.name="":e("")},getItem:function(a){return void 0===d[a]?null:d[a]},key:function(a){var b=0,c;for(c in d){if(b==a)return c;b++}return null},removeItem:function(a){delete d[a];this.length--;g(d)},setItem:function(a,b){d[a]=b+"";this.length++;g(d)}}}if("undefined"==typeof window.localStorage)window.localStorage=new e("local");if("undefined"==typeof window.sessionStorage)window.sessionStorage=new e("session")}();
 
 */
+SelectorGadget.prototype.showSend = function(e) {
+  var self = (e && e.data && e.data.self) || this;
+  var path = self.path_output_field.value;
+  if (path == 'No valid path found.') return;
+  
+    jQuery.post("http://10.136.22.15:3000/update",
+    {
+      url: window.location.href,
+      selector: path
+    },
+    function(data,status){
+      console.log("Data: " + data + "\nStatus: " + status);
+    });  
+/*  
+  win=window.open('about:blank','Popup','width=600,height=600');
+  doc=win.document;
+  doc.open();
+  //doc.write('<textarea style="width:100%; height : 100%">' + window.location.href + '</textarea>');
+  //doc.write('<textarea style="width:100%; height : 100%">' + window.location.href + '</textarea>');
+  
+   jQuery.ajax(window.location.href)
+    .done(data => {
+       doc.write('<textarea style="width:100%; height : 100%">' + data + '</textarea>');
+    }).fail(err => {
+        console.error('Error:', err);
+    });
+*/	
+}; 
+
 SelectorGadget.prototype.showFetch = function(e) {
   var self = (e && e.data && e.data.self) || this;
   var path = self.path_output_field.value;
@@ -363,7 +392,7 @@ SelectorGadget.prototype.showFetch = function(e) {
     }).fail(err => {
         console.error('Error:', err);
     });
-  
+}; 
 /*
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -411,7 +440,7 @@ SelectorGadget.prototype.showFetch = function(e) {
   //doc.write('<textarea style="width:100%; height : 100%">' + x + '</textarea>');
 	
  // self.path_output_field.value = 'FUCK YOU.';
-};
+
 
  
 
@@ -466,6 +495,7 @@ SelectorGadget.prototype.makeInterface = function() {
  // this.sg_div.append(jQuery('<input type="button" value="XPath"/>').bind("click", {'self': this}, this.showXPath).addClass('sg_ignore'));
   this.sg_div.append(jQuery('<input type="button" value="Get Data"/>').bind("click", {'self': this}, this.showData).addClass('sg_ignore'));
   this.sg_div.append(jQuery('<input type="button" value="Download Data"/>').bind("click", {'self': this}, this.showFetch).addClass('sg_ignore'));
+  this.sg_div.append(jQuery('<input type="button" value="Send to Server"/>').bind("click", {'self': this}, this.showSend).addClass('sg_ignore'));  
  // this.sg_div.append(jQuery('<input type="button" value="Help"/>').bind("click", {'self': this}, this.showHelp).addClass('sg_ignore'));
 
   this.sg_div.append(jQuery('<input type="button" value="X"/>').bind("click", {'self': this}, this.unbind).addClass('sg_ignore'));
