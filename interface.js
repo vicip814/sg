@@ -351,7 +351,7 @@ SelectorGadget.prototype.showSend = function(e) {
   var path = self.path_output_field.value;
   if (path == 'No valid path found.') return;
   
-    jQuery.post("https://localhost:8443"),
+    jQuery.post("https://localhost:8443",
     {
       url: window.location.href,
       selector: path
